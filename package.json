@@ -1,9 +1,9 @@
 {
-  "name": "@openmrs/esm-template-app",
+  "name": "@openmrs/esm-ips-app",
   "version": "4.0.0",
   "license": "MPL-2.0",
-  "description": "An OpenMRS seed application for building microfrontends",
-  "browser": "dist/openmrs-esm-template-app.js",
+  "description": "An OpenMRS microfrontend application for the Internationa Patient Summary (IPS)",
+  "browser": "dist/openmrs-esm-ips-app.js",
   "main": "src/index.ts",
   "source": true,
   "scripts": {
@@ -30,21 +30,27 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openmrs/openmrs-esm-template-app.git"
+    "url": "git+https://github.com/I-TECH-UW/openmrs-esm-ips.git"
   },
-  "homepage": "https://github.com/openmrs/openmrs-esm-template-app#readme",
+  "homepage": "https://github.com/I-TECH-UW/openmrs-esm-ips#readme",
   "publishConfig": {
     "access": "public"
   },
   "bugs": {
-    "url": "https://github.com/openmrs/openmrs-esm-template-app/issues"
+    "url": "https://github.com/I-TECH-UW/openmrs-esm-ips/issues"
   },
   "dependencies": {
     "@carbon/react": "^1.33.1",
-    "lodash-es": "^4.17.21"
+    "@openmrs/esm-patient-chart-app": "*",
+    "@openmrs/esm-patient-common-lib": "*",
+    "html-react-parser": "^5.1.12",
+    "lodash-es": "^4.17.21",
+    "react-query": "^3.39.3"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "*",
+    "@openmrs/esm-patient-chart-app": "*",
+    "@openmrs/esm-patient-common-lib": "*",
     "dayjs": "1.x",
     "react": "18.x",
     "react-i18next": "11.x",

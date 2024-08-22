@@ -6,25 +6,36 @@
   },
   "extensions": [
     {
-      "name": "Red box",
-      "component": "redBox",
-      "slot": "Boxes"
+      "name": "history-dashboard",
+      "component": "patientHistoryDashboardLink",
+      "slot": "patient-chart-dashboard-slot",
+      "order": 12,
+      "meta": {
+        "slot": "patient-history-dashboard-slot",
+        "path": "Patient History"
+      },
+      "online": true,
+      "offline": true
     },
     {
-      "name": "Blue box",
-      "component": "blueBox",
-      "slot": "Boxes"
-    },
-        {
-      "name": "Brand box",
-      "component": "blueBox",
-      "slot": "Boxes"
+      "name": "patient-history",
+      "slot": "patient-history-dashboard-slot",
+      "component": "patientHistory",
+      "order": 1,
+      "meta": {
+        "title": "Patient History",
+        "view": "Patient History"
+      },
+      "online": true,
+      "offline": true
     }
   ],
   "pages": [
     {
       "component": "root",
-      "route": "root"
+      "routeRegex": "^patient\/.+\/chat",
+      "online": true,
+      "offline": true
     }
   ]
 }
