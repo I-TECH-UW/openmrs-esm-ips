@@ -3145,7 +3145,6 @@ __metadata:
     webpack-cli: "npm:^5.1.4"
   peerDependencies:
     "@openmrs/esm-framework": "*"
-    "@openmrs/esm-patient-chart-app": "*"
     "@openmrs/esm-patient-common-lib": "*"
     dayjs: 1.x
     react: 18.x

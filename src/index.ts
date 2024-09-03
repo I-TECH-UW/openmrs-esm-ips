@@ -1,5 +1,5 @@
 import { getSyncLifecycle } from '@openmrs/esm-framework';
-import { createDashboardLink } from './dashboards/createDashboardLink';
+import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
 import { dashboardMeta } from './dashboard.meta';
 import patientHistoryComponent from './history/patient-history.component';
 import patientHistoryPageComponent from './root.component';
@@ -31,4 +31,3 @@ export const patientHistoryDashboardLink =
   );
 
 export const patientHistory = getSyncLifecycle(patientHistoryComponent, options);
-

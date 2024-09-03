@@ -1,14 +1,15 @@
+import { useMemo } from 'react';
+import { restBaseUrl } from '@openmrs/esm-framework';
 import useSWR from 'swr';
 
-const fetcher = (...args:[patientUuid: any]) => fetch(...args).then((res) => res.json());
+const fetcher = (...args: [patientUuid: string]) => fetch(...args).then((res) => res.json());
 
-const useIpsResource = () => {
+const useIpsResource = (uuid: string) => {
   const {
     data: summaries,
     error,
     isLoading,
-  } = useSWR('https://dd25f6cb-a999-43b0-b07a-b426bd9d0dc3.mock.pstmn.io/Patient/1234/$summary', fetcher);
-
+  } = useSWR(`/openmrs` + `${restBaseUrl}/patient/${uuid}/patientsummary`, fetcher);
   return {
     summaries,
     error,
@@ -17,4 +18,3 @@ const useIpsResource = () => {
 };
 
 export default useIpsResource;
-
