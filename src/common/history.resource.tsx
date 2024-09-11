@@ -1,15 +1,12 @@
-import { useMemo } from 'react';
+import { type InternationalPatientSummary } from '../types';
 import { restBaseUrl } from '@openmrs/esm-framework';
 import useSWR from 'swr';
 
-const fetcher = (...args: [patientUuid: string]) => fetch(...args).then((res) => res.json());
-
 const useIpsResource = (uuid: string) => {
-  const {
-    data: summaries,
-    error,
-    isLoading,
-  } = useSWR(`/openmrs` + `${restBaseUrl}/patient/${uuid}/patientsummary`, fetcher);
+  const url = `/openmrs` + `${restBaseUrl}/patient/${uuid}/patientsummary`;
+  const fetcher = (url: string | URL | Request): Promise<InternationalPatientSummary> =>
+    fetch(url).then((res) => res.json());
+  const { data: summaries, error, isLoading } = useSWR<InternationalPatientSummary>(url, fetcher);
   return {
     summaries,
     error,

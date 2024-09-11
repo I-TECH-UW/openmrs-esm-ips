@@ -1,3 +1,5 @@
+@use '@carbon/colors';
+@use '@carbon/layout';
 @use '@carbon/styles/scss/spacing';
 @use '@carbon/styles/scss/type';
 @import '@openmrs/esm-styleguide/src/vars';
@@ -197,6 +199,48 @@
   :global(.cds--inline-loading__text) {
     font-size: unset !important;
   }
+}
+
+.customRow tbody {
+  white-space: nowrap;
+}
+
+.tableHeader {
+  width: max-content;
+  max-width: 300px;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  min-inline-size: max-content;
+
+  svg {
+    margin-right: layout.$spacing-02;
+  }
+}
+
+.abnormal-value {
+  border: solid 1px colors.$orange-20-hover;
+  background-color: colors.$orange-10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  gap: layout.$spacing-02;
+  padding: layout.$spacing-02;
+}
+
+.infoFlagTag {
+  padding: 0 layout.$spacing-03;
+  background-color: colors.$orange-20;
+  color: #934412;
+}
+
+.critical-value {
+  @extend .abnormal-value;
+  border: 1px solid colors.$red-60;
+  background-color: colors.$red-20;
 }
 
 // Overriding styles for RTL support
