@@ -40,9 +40,9 @@ const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
               <InlineLoading description={`${t('loading', 'Loading')} ...`} role="progressbar" />
             ) : error ? (
               <ErrorState headerTitle={t('history', 'Patient History')} error={error} />
-            ) : summaries.entry ? (
+            ) : summaries.data ? (
               <>
-                {summaries.entry
+                {summaries.data
                   .filter((summary: { resource: { resourceType: string } }) =>
                     resources.includes(summary?.resource?.resourceType),
                   )
