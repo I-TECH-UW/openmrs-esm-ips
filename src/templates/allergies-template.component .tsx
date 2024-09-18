@@ -10,8 +10,10 @@ import {
   Tag,
 } from '@carbon/react';
 import styles from '../history/history-detail-overview.scss';
+import { useTranslation } from 'react-i18next';
 
 const AllergiesTemplate = (entry: InternationalPatientSummary) => {
+  const { t } = useTranslation();
   const interpretation: string = entry?.resource?.criticality;
   const flaggedCritical = interpretation && interpretation == Constants.CRITICAL_INTERPRETATION;
   const flaggedAbnormal = interpretation && interpretation !== Constants.NORMAL_INTERPRETATION;
@@ -28,9 +30,9 @@ const AllergiesTemplate = (entry: InternationalPatientSummary) => {
         <StructuredListWrapper>
           <StructuredListHead>
             <StructuredListRow head>
-              <StructuredListCell head>Category</StructuredListCell>
-              <StructuredListCell head>Criticality</StructuredListCell>
-              <StructuredListCell head>Description</StructuredListCell>
+              <StructuredListCell head>{t('category', 'Category')}</StructuredListCell>
+              <StructuredListCell head>{t('criticality', 'Criticality')}</StructuredListCell>
+              <StructuredListCell head>{t('description', 'Description')}</StructuredListCell>
             </StructuredListRow>
           </StructuredListHead>
           <StructuredListBody>

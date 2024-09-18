@@ -10,8 +10,10 @@ import {
   Tag,
 } from '@carbon/react';
 import styles from '../history/history-detail-overview.scss';
+import { useTranslation } from 'react-i18next';
 
 const ImmunizationsTemplate = (entry: InternationalPatientSummary) => {
+  const { t } = useTranslation();
   const status: string = entry?.resource?.status;
   const flaggedCompleted = status && status == Constants.COMPLETED_STATUS;
   const displayVaccineCode = entry?.resource?.vaccineCode?.coding?.flatMap((property) => property.code);
@@ -29,10 +31,10 @@ const ImmunizationsTemplate = (entry: InternationalPatientSummary) => {
         <StructuredListWrapper>
           <StructuredListHead>
             <StructuredListRow head>
-              <StructuredListCell head>Date</StructuredListCell>
-              <StructuredListCell head>Status</StructuredListCell>
-              <StructuredListCell head>Vaccine</StructuredListCell>
-              <StructuredListCell head>Route</StructuredListCell>
+              <StructuredListCell head>{t('date', 'Date')}</StructuredListCell>
+              <StructuredListCell head>{t('status', 'Status')}</StructuredListCell>
+              <StructuredListCell head>{t('vaccine', 'Vaccine')}</StructuredListCell>
+              <StructuredListCell head>{t('route', 'Route')}</StructuredListCell>
             </StructuredListRow>
           </StructuredListHead>
           <StructuredListBody>

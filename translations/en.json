@@ -1,3 +1,13 @@
 {
-  "history":"history"
+  "category": "Category",
+  "clinicalStatus": "Clinical Status",
+  "date": "Date",
+  "history": "History",
+  "loading": "Loading",
+  "name": "Name",
+  "route": "Route",
+  "severity": "Severity",
+  "status": "Status",
+  "vaccine": "Vaccine",
+  "value": "Value"
 }

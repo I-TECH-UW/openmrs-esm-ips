@@ -9,6 +9,7 @@ import {
   StructuredListWrapper,
 } from '@carbon/react';
 import styles from '../history/history-detail-overview.scss';
+import { useTranslation } from 'react-i18next';
 
 const MedicationsTemplate = (entry: InternationalPatientSummary) => {
   function renderMedications(): React.ReactNode {
@@ -54,6 +55,7 @@ const Medications = (entry: InternationalPatientSummary) => {
 };
 
 const MedicationStatements = (entry: InternationalPatientSummary) => {
+  const { t } = useTranslation();
   const displayRouteText = entry?.resource?.dosage
     ?.flatMap((property) => property.route)
     .flatMap((property) => property.coding)
@@ -78,11 +80,11 @@ const MedicationStatements = (entry: InternationalPatientSummary) => {
         <StructuredListWrapper>
           <StructuredListHead>
             <StructuredListRow head>
-              <StructuredListCell head>Route</StructuredListCell>
-              <StructuredListCell head>Qty</StructuredListCell>
-              <StructuredListCell head>Unit</StructuredListCell>
-              <StructuredListCell head>Freq. Qty</StructuredListCell>
-              <StructuredListCell head>Freq. Period</StructuredListCell>
+              <StructuredListCell head>{t('route', 'Route')}</StructuredListCell>
+              <StructuredListCell head>{t('quantity', 'Quantity')}</StructuredListCell>
+              <StructuredListCell head>{t('unit', 'Unit')}</StructuredListCell>
+              <StructuredListCell head>{t('frequencyQuantity', 'Frequency Quantity')}</StructuredListCell>
+              <StructuredListCell head>{t('frequencyPeriod', 'Frequency Period')}</StructuredListCell>
             </StructuredListRow>
           </StructuredListHead>
           <StructuredListBody>

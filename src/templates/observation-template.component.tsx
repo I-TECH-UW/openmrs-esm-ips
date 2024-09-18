@@ -8,8 +8,11 @@ import {
 } from '@carbon/react';
 import { type InternationalPatientSummary } from '../types';
 import styles from '../history/history-detail-overview.scss';
+import { useTranslation } from 'react-i18next';
 
 const ObservationTemplate = (entry: InternationalPatientSummary) => {
+  const { t } = useTranslation();
+
   let categoryDisplayText: string | string[];
 
   if (typeof entry?.resource?.category == 'string') {
@@ -33,10 +36,10 @@ const ObservationTemplate = (entry: InternationalPatientSummary) => {
         <StructuredListWrapper>
           <StructuredListHead>
             <StructuredListRow head>
-              <StructuredListCell head>Name</StructuredListCell>
-              <StructuredListCell head>Date</StructuredListCell>
-              <StructuredListCell head>Value</StructuredListCell>
-              <StructuredListCell head>Category</StructuredListCell>
+              <StructuredListCell head>{t('name', 'Name')}</StructuredListCell>
+              <StructuredListCell head>{t('date', 'Date')}</StructuredListCell>
+              <StructuredListCell head>{t('value', 'Value')}</StructuredListCell>
+              <StructuredListCell head>{t('category', 'Category')}</StructuredListCell>
             </StructuredListRow>
           </StructuredListHead>
           <StructuredListBody>

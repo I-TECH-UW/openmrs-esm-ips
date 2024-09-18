@@ -10,8 +10,10 @@ import {
   Tag,
 } from '@carbon/react';
 import styles from '../history/history-detail-overview.scss';
+import { useTranslation } from 'react-i18next';
 
 const ConditionsTemplate = (entry: InternationalPatientSummary) => {
+  const { t } = useTranslation();
   const displayConditionNameText = entry?.resource?.code?.coding?.flatMap((property) => property.display);
   const displaySeverityText = entry?.resource?.severity?.coding?.flatMap((property) => property.display);
   const displayClinicalStatusText = entry?.resource?.clinicalStatus?.coding?.flatMap((property) => property.code);
@@ -39,10 +41,10 @@ const ConditionsTemplate = (entry: InternationalPatientSummary) => {
         <StructuredListWrapper>
           <StructuredListHead>
             <StructuredListRow head>
-              <StructuredListCell head>Name</StructuredListCell>
-              <StructuredListCell head>Clinical Status</StructuredListCell>
-              <StructuredListCell head>Severity</StructuredListCell>
-              <StructuredListCell head>Category</StructuredListCell>
+              <StructuredListCell head>{t('name', 'Name')}</StructuredListCell>
+              <StructuredListCell head>{t('clinicalStatus', 'Clinical Status')}</StructuredListCell>
+              <StructuredListCell head>{t('severity', 'Severity')}</StructuredListCell>
+              <StructuredListCell head>{t('category', 'Category')}</StructuredListCell>
             </StructuredListRow>
           </StructuredListHead>
           <StructuredListBody>

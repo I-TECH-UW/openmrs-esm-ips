@@ -3,33 +3,33 @@ import AllergiesTemplate from '../templates/allergies-template.component ';
 import ConditionsTemplate from '../templates/conditions-template.component';
 import * as Constants from '../constants/constants';
 import { EmptyState } from '@openmrs/esm-patient-common-lib';
-import ImmunizationsTemplate from '../templates/immunization.component';
-import { InlineLoading, Tabs, TabPanel, TabPanels } from '@carbon/react';
 import { ErrorState, usePatient } from '@openmrs/esm-framework';
+import ImmunizationsTemplate from '../templates/immunization-template.component';
+import { InlineLoading, Tabs, TabPanel, TabPanels } from '@carbon/react';
+import MedicationsTemplate from '../templates/medication-template.component ';
 import ObservationTemplate from '../templates/observation-template.component';
 import { useTranslation } from 'react-i18next';
-import useIpsResource from '../common/history.resource';
 import styles from './history-detail-overview.scss';
-import MedicationsTemplate from '../templates/medication-template.component ';
+import useIpsResource from '../common/history.resource';
 
 interface HistoryDetailOverviewProps {
   patientUuid: string;
 }
 
+//Add a resource to this array and write its template to have it displayed
+const resources: string[] = [
+  Constants.ALLERGY_INTOLERANCE,
+  Constants.CONDITION_RESOURCE,
+  Constants.IMMUNIZATION_RESOURCE,
+  Constants.MEDICATION_RESOURCE,
+  Constants.MEDICATION_STATEMENT_RESOURCE,
+  Constants.OBSERVATION_RESOURCE,
+];
+
 const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
   const { t } = useTranslation();
   const { patientUuid: uuid } = usePatient();
   const { summaries, error, isLoading } = useIpsResource(uuid);
-
-  //Add a resource to this array and write its template to have it displayed
-  const resources: string[] = [
-    Constants.ALLERGY_INTOLERANCE,
-    Constants.CONDITION_RESOURCE,
-    Constants.IMMUNIZATION_RESOURCE,
-    Constants.MEDICATION_RESOURCE,
-    Constants.MEDICATION_STATEMENT_RESOURCE,
-    Constants.OBSERVATION_RESOURCE,
-  ];
 
   return (
     <div className={styles.tabs}>
