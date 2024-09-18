@@ -45,7 +45,9 @@ const ObservationTemplate = (entry: InternationalPatientSummary) => {
           <StructuredListBody>
             <StructuredListRow>
               <StructuredListCell noWrap={false}>{nameDisplayText ? nameDisplayText : '--'}</StructuredListCell>
-              <StructuredListCell>{entry?.effectiveDateTime ? entry.effectiveDateTime : '--'}</StructuredListCell>
+              <StructuredListCell>
+                {entry?.resource?.effectiveDateTime ? entry.resource.effectiveDateTime : '--'}
+              </StructuredListCell>
               <StructuredListCell noWrap={false}>
                 {valueCodeableDisplayText ? valueCodeableDisplayText : '--'}
               </StructuredListCell>

@@ -11,7 +11,6 @@ export interface DashboardConfig extends DashboardLinkConfig {
 }
 
 export interface InternationalPatientSummary {
-  [x: string]: any;
   resource: {
     id: string;
     category: {
@@ -115,4 +114,5 @@ export interface InternationalPatientSummary {
       }>;
     };
   };
+  [entry: string]: any;
 }
