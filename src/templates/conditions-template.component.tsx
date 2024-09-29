@@ -17,8 +17,8 @@ const ConditionsTemplate = (entry: InternationalPatientSummary) => {
   const displayConditionNameText = entry?.resource?.code?.coding?.flatMap((property) => property.display);
   const displaySeverityText = entry?.resource?.severity?.coding?.flatMap((property) => property.display);
   const displayClinicalStatusText = entry?.resource?.clinicalStatus?.coding?.flatMap((property) => property.code);
-  const status: boolean = displayClinicalStatusText.includes('active');
-  const severity: boolean = displaySeverityText.includes('Severe');
+  const status: boolean = displayClinicalStatusText ? displayClinicalStatusText.includes('active') : false;
+  const severity: boolean = displaySeverityText ? displaySeverityText.includes('Severe') : false;
   const flaggedActive = status == true;
   const flaggedSevere = severity == true;
 
@@ -28,7 +28,8 @@ const ConditionsTemplate = (entry: InternationalPatientSummary) => {
     categoryDisplayText = entry?.resource?.category;
   }
 
-  categoryDisplayText = entry?.resource?.category[0]?.coding?.flatMap((property) => property.display);
+  const category = entry?.resource?.category;
+  categoryDisplayText =  category ? entry?.resource?.category[0]?.coding?.flatMap((property) => property.display) : null;
 
   return (
     <div>

@@ -5,12 +5,26 @@ import useSWR from 'swr';
 
 const useIpsResource = (uuid: string) => {
   const url = `${restBaseUrl}/patient/${uuid}/patientsummary`;
-  const { data: summaries, error, isLoading } = useSWR<{ data: InternationalPatientSummary }, Error>(url, openmrsFetch);
+  const { data: history, error, isLoading } = useSWR<{ data: InternationalPatientSummary }, Error>(url, openmrsFetch);
   return {
-    summaries,
+    history,
     error,
     isLoading,
   };
 };
+
+export function createIpsResource(uuid: string, abortController: AbortController) {
+  const url = `${restBaseUrl}/patient/${uuid}/patientsummary`;
+  return openmrsFetch<unknown>(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    signal: abortController.signal,
+    body: {
+      patient: uuid,
+    },
+  });
+}
 
 export default useIpsResource;
