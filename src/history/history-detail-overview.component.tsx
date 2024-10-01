@@ -48,7 +48,6 @@ const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
     }
   },[error, history, isLoading])
 
-  console.error(ips);
 
   const handleSubmit = () => {
     setIsSubmitting(true);
@@ -62,7 +61,7 @@ const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
         showSnackbar({
           isLowContrast: true,
           kind: 'success',
-          title: t('ipsCreated', 'IPS bundle generated successfully!'),
+          title: t('ipsCreated', 'IPS'),
           subtitle: t(
             'ipsNowAvailable',
             'The IPS is now visible on the Patient History page',
@@ -74,7 +73,7 @@ const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
       setIps((ps) => ({...ps, history: null, isLoading: false, error: err?.message || "Failed to fetch IPS"}));
       setIsSubmitting(false);
       showSnackbar({
-        title: t('ipsCreationError', 'Error generating IPS from Fhir server'),
+        title: t('ipsCreationError', 'IPS'),
         kind: 'error',
         isLowContrast: false,
         subtitle: t('checkForServerAvailability', 'The Fhir server maybe unreachable or the IPS generation process exited with an error!'),
