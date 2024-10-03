@@ -107,12 +107,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: 📤 Upload Artifacts
+      - name: 📤 Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: packages
+          name: dist
           path: |
-            packages/**/dist
+            dist
           overwrite: true
 
   release:
