@@ -92,7 +92,7 @@ jobs:
           server-token: ${{ env.TURBO_TOKEN }}
 
       - name: 🏷️ Version
-        run: yarn workspaces foreach --worktree --topological --exclude @i-tech-uw/esm-patient-ips-app version "$(node -e "console.log(require('semver').inc(require('./package.json').version, 'patch'))")-pre.${{ github.run_number }}"
+        run: yarn version "$(node -e "console.log(require('semver').inc(require('./package.json').version, 'patch'))")-pre.${{ github.run_number }}"
 
       - name: 🏗️ Build
         run: yarn turbo run build --concurrency=5
@@ -103,7 +103,7 @@ jobs:
         run: git add . && git commit -m "Prerelease version" --no-verify
 
       - name: 🚀 Pre-release
-        run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn run ci:prepublish
+        run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn npm publish --access public --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -142,6 +142,6 @@ jobs:
         run: yarn install --immutable
 
       - run: yarn turbo run build --color
-      - run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn run ci:publish
+      - run: yarn config set npmAuthToken "${NODE_AUTH_TOKEN}" && yarn npm publish --access public --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
