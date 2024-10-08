@@ -64,7 +64,7 @@ const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
           title: t('ipsCreated', 'IPS'),
           subtitle: t(
             'ipsNowAvailable',
-            'The IPS is now visible on the Patient History page',
+            'The IPS has been updated and is now visible in the Patient History.',
           ),
         });
       }
@@ -92,9 +92,18 @@ const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
             {isLoading ? (
               <InlineLoading description={`${t('loading', 'Loading')} ...`} role="progressbar" />
             ) : error ? (
-              <ErrorState headerTitle={t('history', 'Patient History')} error={error} />
+              <ErrorState headerTitle={t('patientHistory', 'Patient History')} error={error} />
             ) : ips?.history?.data?.entry ? (
-              <>
+              <Tile className={styles.tile}>
+                 <Button
+                  className={styles.button}
+                  kind="ghost"
+                  renderIcon={Renew}
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  type="submit">
+                  {t('refresh', 'Refresh')}
+                </Button>
                 {ips?.history?.data?.entry
                   .filter((summary: { resource: { resourceType: string } }) =>
                     resources.includes(summary?.resource?.resourceType),
@@ -120,7 +129,8 @@ const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
                       })()}
                     </div>
                   ))}
-              </>
+
+              </Tile>
             ) : (
               <Tile className={styles.tile}>
                  <Button
@@ -132,7 +142,7 @@ const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
                   type="submit">
                   {t('refresh', 'Refresh')}
                 </Button>
-                <EmptyState headerTitle={t('history', 'Patient History')} displayText={t('history', 'Patient History')}/>
+                <EmptyState headerTitle={t('patientHistory', 'Patient History')} displayText={t('patientHistory', 'Patient History')}/>
               </Tile>
             )}
           </TabPanel>
