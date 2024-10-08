@@ -13,11 +13,9 @@ module.exports = {
     '!**/e2e/**',
   ],
   transform: {
-    //'^.+\\.tsx?$': ['@swc/jest'],
     '^.+\\.(js|jsx|ts|tsx)$': ['@swc/jest'],
 
   },
-  //transformIgnorePatterns: ['/node_modules/(?!@openmrs)'],
   transformIgnorePatterns: [
     '/node_modules/(?!(@openmrs|uuid)/)',
   ],
