@@ -3,7 +3,7 @@ import { restBaseUrl } from '@openmrs/esm-framework';
 import { openmrsFetch } from '@openmrs/esm-framework';
 import useSWR from 'swr';
 
-const useIpsResource = (uuid: string) => {
+export function useIpsResource(uuid: string) {
   const url = `${restBaseUrl}/patient/${uuid}/patientsummary`;
   const { data: history, error, isLoading } = useSWR<{ data: InternationalPatientSummary }, Error>(url, openmrsFetch);
   return {
@@ -11,7 +11,7 @@ const useIpsResource = (uuid: string) => {
     error,
     isLoading,
   };
-};
+}
 
 export function createIpsResource(uuid: string, abortController: AbortController) {
   const url = `${restBaseUrl}/patient/${uuid}/patientsummary`;
@@ -26,5 +26,3 @@ export function createIpsResource(uuid: string, abortController: AbortController
     },
   });
 }
-
-export default useIpsResource;

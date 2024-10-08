@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Constants from '../constants/constants';
-import { type InternationalPatientSummary } from '../types';
+import { type InternationalPatientSummaryResource } from '../types';
 import {
   StructuredListBody,
   StructuredListCell,
@@ -12,7 +12,7 @@ import {
 import styles from '../history/history-detail-overview.scss';
 import { useTranslation } from 'react-i18next';
 
-const ImmunizationsTemplate = (entry: InternationalPatientSummary) => {
+const ImmunizationsTemplate = (entry: InternationalPatientSummaryResource) => {
   const { t } = useTranslation();
   const status: string = entry?.resource?.status;
   const flaggedCompleted = status && status == Constants.COMPLETED_STATUS;

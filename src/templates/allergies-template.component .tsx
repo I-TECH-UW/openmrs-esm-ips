@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Constants from '../constants/constants';
-import { type InternationalPatientSummary } from '../types';
+import { type InternationalPatientSummaryResource } from '../types';
 import {
   StructuredListBody,
   StructuredListCell,
@@ -12,7 +12,7 @@ import {
 import styles from '../history/history-detail-overview.scss';
 import { useTranslation } from 'react-i18next';
 
-const AllergiesTemplate = (entry: InternationalPatientSummary) => {
+const AllergiesTemplate = (entry: InternationalPatientSummaryResource) => {
   const { t } = useTranslation();
   const interpretation: string = entry?.resource?.criticality;
   const flaggedCritical = interpretation && interpretation == Constants.CRITICAL_INTERPRETATION;
