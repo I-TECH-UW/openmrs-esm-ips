@@ -13,9 +13,12 @@ module.exports = {
     '!**/e2e/**',
   ],
   transform: {
-    '^.+\\.tsx?$': ['@swc/jest'],
+    '^.+\\.(js|jsx|ts|tsx)$': ['@swc/jest'],
+
   },
-  transformIgnorePatterns: ['/node_modules/(?!@openmrs)'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(@openmrs|uuid)/)',
+  ],
   moduleNameMapper: {
     '@openmrs/esm-framework': '@openmrs/esm-framework/mock',
     '@openmrs/esm-utils': '@openmrs/esm-framework/mock',

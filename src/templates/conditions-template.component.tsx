@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Constants from '../constants/constants';
-import { type InternationalPatientSummary } from '../types';
+import { type InternationalPatientSummaryResource } from '../types';
 import {
   StructuredListBody,
   StructuredListCell,
@@ -12,7 +12,7 @@ import {
 import styles from '../history/history-detail-overview.scss';
 import { useTranslation } from 'react-i18next';
 
-const ConditionsTemplate = (entry: InternationalPatientSummary) => {
+const ConditionsTemplate = (entry: InternationalPatientSummaryResource) => {
   const { t } = useTranslation();
   const displayConditionNameText = entry?.resource?.code?.coding?.flatMap((property) => property.display);
   const displaySeverityText = entry?.resource?.severity?.coding?.flatMap((property) => property.display);
@@ -24,13 +24,14 @@ const ConditionsTemplate = (entry: InternationalPatientSummary) => {
 
   let categoryDisplayText: string | string[];
 
-  if (typeof entry?.resource?.category == 'string') {
-    categoryDisplayText = entry?.resource?.category;
-  }
-
-  const category = entry?.resource?.category;
-  categoryDisplayText =  category ? entry?.resource?.category[0]?.coding?.flatMap((property) => property.display) : null;
-
+  categoryDisplayText = entry?.resource?.category?.flatMap((item) => {
+    if (typeof item === 'string') {
+      return item;
+    } else if (item.coding) {
+      return item.coding.flatMap((property) => property.code);
+    }
+    return null;
+  });
   return (
     <div>
       <div className={styles.header}>

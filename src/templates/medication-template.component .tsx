@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Constants from '../constants/constants';
-import { type InternationalPatientSummary } from '../types';
+import { type InternationalPatientSummaryResource } from '../types';
 import {
   StructuredListBody,
   StructuredListCell,
@@ -11,7 +11,7 @@ import {
 import styles from '../history/history-detail-overview.scss';
 import { useTranslation } from 'react-i18next';
 
-const MedicationsTemplate = (entry: InternationalPatientSummary) => {
+const MedicationsTemplate = (entry: InternationalPatientSummaryResource) => {
   function renderMedications(): React.ReactNode {
     if (entry?.resource?.resourceType == Constants.MEDICATION_RESOURCE) {
       return (
@@ -30,7 +30,7 @@ const MedicationsTemplate = (entry: InternationalPatientSummary) => {
   return <div>{renderMedications()}</div>;
 };
 
-const Medications = (entry: InternationalPatientSummary) => {
+const Medications = (entry: InternationalPatientSummaryResource) => {
   const medications = entry?.resource?.code?.coding;
   if (medications) {
     return (
@@ -54,7 +54,7 @@ const Medications = (entry: InternationalPatientSummary) => {
   }
 };
 
-const MedicationStatements = (entry: InternationalPatientSummary) => {
+const MedicationStatements = (entry: InternationalPatientSummaryResource) => {
   const { t } = useTranslation();
   const displayRouteText = entry?.resource?.dosage
     ?.flatMap((property) => property.route)

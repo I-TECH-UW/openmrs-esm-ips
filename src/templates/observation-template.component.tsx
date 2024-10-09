@@ -6,20 +6,23 @@ import {
   StructuredListRow,
   StructuredListWrapper,
 } from '@carbon/react';
-import { type InternationalPatientSummary } from '../types';
+import { type InternationalPatientSummaryResource } from '../types';
 import styles from '../history/history-detail-overview.scss';
 import { useTranslation } from 'react-i18next';
 
-const ObservationTemplate = (entry: InternationalPatientSummary) => {
+const ObservationTemplate = (entry: InternationalPatientSummaryResource) => {
   const { t } = useTranslation();
 
   let categoryDisplayText: string | string[];
 
-  if (typeof entry?.resource?.category == 'string') {
-    categoryDisplayText = entry?.resource?.category;
-  }
-
-  categoryDisplayText = entry?.resource?.category[0]?.coding?.flatMap((property) => property.code);
+  categoryDisplayText = entry?.resource?.category?.flatMap((item) => {
+    if (typeof item === 'string') {
+      return item;
+    } else if (item.coding) {
+      return item.coding.flatMap((property) => property.code);
+    }
+    return null;
+  });
   const valueCodeableDisplayText = entry?.resource?.valueCodeableConcept?.coding?.flatMap(
     (property) => property.display,
   );

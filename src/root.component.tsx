@@ -11,8 +11,8 @@ const Root: React.FC = () => {
       <div className={styles.patientHistoryWrapper}>
         <BrowserRouter basename={spaRoot}>
           <Routes>
-            <Route path={historyBasePath} element={<PatientHistory/>} />
-            <Route path={historyDashboardPath} element={<PatientHistory/>} />
+            <Route path={historyBasePath} element={<PatientHistory />} />
+            <Route path={historyDashboardPath} element={<PatientHistory />} />
           </Routes>
         </BrowserRouter>
       </div>

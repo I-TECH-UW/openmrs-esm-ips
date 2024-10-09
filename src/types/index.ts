@@ -11,64 +11,81 @@ export interface DashboardConfig extends DashboardLinkConfig {
 }
 
 export interface InternationalPatientSummary {
+  resourceType: string;
+  identifier: {
+    system: string;
+    value: string;
+  };
+  type: string;
+  timestamp: string;
+  entry: Array<{
+    fullUrl: string;
+    resource: InternationalPatientSummaryResource['resource'];
+  }>;
+}
+
+export interface InternationalPatientSummaryResource {
   resource: {
     id: string;
-    category: {
-      coding: Array<{
-        system: string;
-        code: string;
-        display: string;
+    category?: Array<
+      | string
+      | {
+          coding?: Array<{
+            system?: string;
+            code?: string;
+            display?: string;
+          }>;
+        }
+    >;
+    clinicalStatus?: {
+      coding?: Array<{
+        system?: string;
+        code?: string;
       }>;
     };
-    clinicalStatus: {
-      coding: Array<{
-        system: string;
-        code: string;
+    code?: {
+      coding?: Array<{
+        system?: string;
+        code?: string;
+        display?: string;
       }>;
     };
-    code: {
-      coding: Array<{
-        system: string;
-        code: string;
-        display: string;
-      }>;
-    };
-    criticality: string;
-    dosage: Array<{
-      timing: {
-        repeat: {
-          count: number;
-          periodUnit: string;
+    criticality?: string;
+    dosage?: Array<{
+      timing?: {
+        repeat?: {
+          count?: number;
+          periodUnit?: string;
         };
       };
-      route: Array<{
-        coding: Array<{
-          system: string;
-          code: string;
-          display: string;
+      route?: {
+        coding?: Array<{
+          system?: string;
+          code?: string;
+          display?: string;
         }>;
-      }>;
-      doseAndRate: Array<{
-        type: Array<{
-          coding: Array<{
-            system: string;
-            code: string;
-            display: string;
+      };
+      doseAndRate?: Array<{
+        type?: {
+          coding?: Array<{
+            system?: string;
+            code?: string;
+            display?: string;
           }>;
-        }>;
-        doseQuantity: {
-          value: number;
-          unit: string;
-          system: string;
-          code: number;
+        };
+        doseQuantity?: {
+          value?: number;
+          unit?: string;
+          system?: string;
+          code?: string;
         };
       }>;
     }>;
-    effectiveDateTime: string;
-    medicationReference: {
-      reference: string;
+    effectiveDateTime?: string;
+    medicationReference?: {
+      reference?: string;
     };
-    occurrenceDateTime: string;
+    occurrenceDateTime?: string;
     resourceType:
       | string
       | number
@@ -77,42 +94,41 @@ export interface InternationalPatientSummary {
       | Iterable<React.ReactNode>
       | React.ReactPortal
       | Iterable<ReactI18NextChild>;
-    route: {
-      coding: Array<{
-        system: string;
-        code: string;
-        display: string;
+    route?: {
+      coding?: Array<{
+        system?: string;
+        code?: string;
+        display?: string;
       }>;
     };
-    severity: {
-      coding: Array<{
-        system: string;
-        code: string;
-        display: string;
+    severity?: {
+      coding?: Array<{
+        system?: string;
+        code?: string;
+        display?: string;
       }>;
     };
-    status: string;
-    text: { div: any };
-    vaccineCode: {
-      coding: Array<{
-        system: string;
-        code: string;
-        display: string;
+    status?: string;
+    text?: { div: any };
+    vaccineCode?: {
+      coding?: Array<{
+        system?: string;
+        code?: string;
+        display?: string;
       }>;
     };
-    valueCodeableConcept: {
-      coding: Array<{
-        system: string;
-        code: string;
-        display: string;
+    valueCodeableConcept?: {
+      coding?: Array<{
+        system?: string;
+        code?: string;
+        display?: string;
       }>;
     };
-    verificationStatus: {
-      coding: Array<{
-        system: string;
-        code: string;
+    verificationStatus?: {
+      coding?: Array<{
+        system?: string;
+        code?: string;
       }>;
     };
   };
-  [entry: string]: any;
 }

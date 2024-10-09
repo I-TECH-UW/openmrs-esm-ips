@@ -3,4 +3,3 @@ export const dashboardMeta = {
   path: 'Patient History',
   title: 'Patient History',
 };
-

@@ -1,8 +1,8 @@
 {
   "ipsCreated": "IPS",
   "ipsNowAvailable": "The IPS has been updated and is now visible in the Patient History.",
-  "ipsCreationError": "IPS",
-  "checkForServerAvailability": "The Fhir server maybe unreachable or the IPS generation process exited with an error!",
+  "ipsCreationError": "Error updating IPS",
+  "checkForServerAvailability": "The FHIR server maybe unreachable or the IPS generation process exited with an error!",
   "refresh": "Refresh",
   "patientHistory": "Antécédents du patient",
   "criticality": "Criticality",
