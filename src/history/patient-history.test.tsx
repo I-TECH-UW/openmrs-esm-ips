@@ -4,7 +4,10 @@ import HistoryDetailOverview from './history-detail-overview.component';
 import React from 'react';
 import { FetchResponse, usePatient } from '@openmrs/esm-framework';
 import { createIpsResource, useIpsResource } from '../common/history.resource';
-import { mockIPS, mockPUTResponse } from '../test.util';
+import { mockIPS, mockPUTResponse } from '../__mocks__/test.util';
+
+const mockUsePatient = jest.mocked(usePatient);
+const mockUseIpsResource = jest.mocked(useIpsResource);
 
 jest.mock('../common/history.resource');
 
@@ -19,14 +22,11 @@ jest.mock('react-router-dom', () => ({
 
 describe('Display patient IPS', () => {
   beforeEach(() => {
-    const mockUseParams = useParams as jest.Mock;
+    const mockUseParams = jest.mocked(useParams);
     mockUseParams.mockReturnValue({ patientUuid: 'mock-uuid' });
   });
 
   it('renders without crashing', () => {
-    const mockUsePatient = jest.mocked(usePatient);
-    const mockUseIpsResource = jest.mocked(useIpsResource);
-
     mockUsePatient.mockReturnValue({
       isLoading: false,
       patient: undefined,
@@ -43,9 +43,6 @@ describe('Display patient IPS', () => {
   });
 
   it('renders loading before resolving ips', async () => {
-    const mockUsePatient = jest.mocked(usePatient);
-    const mockUseIpsResource = jest.mocked(useIpsResource);
-
     mockUsePatient.mockReturnValue({
       isLoading: false,
       patient: undefined,
@@ -65,9 +62,6 @@ describe('Display patient IPS', () => {
   });
 
   it('renders the ips', async () => {
-    const mockUsePatient = jest.mocked(usePatient);
-    const mockUseIpsResource = jest.mocked(useIpsResource);
-
     mockUsePatient.mockReturnValue({
       isLoading: false,
       patient: undefined,
@@ -96,8 +90,6 @@ describe('Display patient IPS', () => {
   });
 
   it('refresh button triggers downloading new ips', async () => {
-    const mockUsePatient = jest.mocked(usePatient);
-    const mockUseIpsResource = jest.mocked(useIpsResource);
     const mockCreateIpsResource = jest.mocked(createIpsResource);
 
     mockCreateIpsResource.mockReturnValue({

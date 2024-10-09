@@ -52,33 +52,30 @@ const HistoryDetailOverview: React.FC<HistoryDetailOverviewProps> = () => {
     setIsSubmitting(true);
     createIpsResource(uuid, abortController)
       .then((response) => {
-        if (response.status === 200) {
-          setIps((ps) => ({ ...ps, history: history, isLoading: isLoading, error: error?.message }));
-          setIsSubmitting(false);
-          showSnackbar({
-            isLowContrast: true,
-            kind: 'success',
-            title: t('ipsCreated', 'IPS'),
-            subtitle: t('ipsNowAvailable', 'The IPS has been updated and is now visible in the Patient History.'),
-          });
-        }
+        setIps((ps) => ({ ...ps, history: history, isLoading: isLoading, error: error?.message }));
+        setIsSubmitting(false);
+        showSnackbar({
+          isLowContrast: true,
+          kind: 'success',
+          title: t('ipsCreated', 'IPS'),
+          subtitle: t('ipsNowAvailable', 'The IPS has been updated and is now visible in the Patient History.'),
+        });
       })
       .catch((err) => {
         setIps((ps) => ({ ...ps, history: null, isLoading: false, error: err?.message || 'Failed to fetch IPS' }));
         setIsSubmitting(false);
         showSnackbar({
-          title: t('ipsCreationError', 'IPS'),
+          title: t('ipsCreationError', 'Error updating IPS'),
           kind: 'error',
           isLowContrast: false,
           subtitle: t(
             'checkForServerAvailability',
-            'The Fhir server maybe unreachable or the IPS generation process exited with an error!',
+            'The FHIR server maybe unreachable or the IPS generation process exited with an error!',
           ),
         });
+        console.error(err?.message);
       })
-      .finally(() => {
-        abortController.abort();
-      });
+      .finally(() => {});
   };
 
   return (
